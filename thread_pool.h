@@ -1,10 +1,12 @@
-#ifndef _THREAD_BASIC_H_
-#define _THREAD_BASIC_H_
+#ifndef _THREAD_POOL_H_
+#define _THREAD_POOL_H_
 
 #include <sys/types.h>
 #include <pthread.h>
 #include <deque>
 #include <queue>
+
+#include "thread_task_pool.h"
 
 /*thread pool*/
 struct thread_unit
@@ -25,5 +27,5 @@ int thread_pool_init(thread_deque& pool,size_t size);
 
 
 
-/*_THREAD_BASIC_H_*/
+/*_THREAD_POOL_H_*/
 #endif
