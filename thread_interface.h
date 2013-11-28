@@ -1,7 +1,7 @@
 #ifndef _THREAD_INTERFACE_H_
 #define _THREAD_INTERFACE_H_
 
-#include "thread.h"
+#include "thread_basic.h"
 
 namespace PUS
 {

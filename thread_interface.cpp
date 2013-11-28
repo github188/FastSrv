@@ -1,1 +1,2 @@
-#include "thread_interface.cpp"
+#include "thread_interface.h"
+
