@@ -1,12 +1,12 @@
-#ifndef _THREAD_POOL_H_
-#define _THREAD_POOL_H_
+#ifndef _THREAD_POOL_HPP_
+#define _THREAD_POOL_HPP_
 
 #include <sys/types.h>
 #include <pthread.h>
 #include <deque>
 #include <queue>
 
-#include "thread_task_pool.h"
+#include "thread_task_pool.hpp"
 
 /*thread pool*/
 struct thread_unit
@@ -26,6 +26,5 @@ typedef std::queue<gid_t> thread_busy;
 int thread_pool_init(thread_deque& pool,size_t size);
 
 
-
-/*_THREAD_POOL_H_*/
+/*_THREAD_POOL_HPP_*/
 #endif

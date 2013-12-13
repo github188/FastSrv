@@ -7,9 +7,8 @@ PROJECT(PURE_SERVER)
 #set environment variable
 SET(HOME /home/zengpw/work/pure_server)
 SET(SRC_LIST
-${HOME}/thread_task_pool.cpp
-${HOME}/thread_pool.cpp
-${HOME}/thread_interface.cpp
+${HOME}/thread_task_pool.hpp
+${HOME}/thread_pool.hpp
 ${HOME}/cmake/test.cpp
 )
 
