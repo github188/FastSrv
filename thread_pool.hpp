@@ -8,23 +8,41 @@
 
 #include "thread_task_pool.hpp"
 
-/*thread pool*/
-struct thread_unit
+namespace TASK_POOL = PURE_SERVER::THREAD_TASK_POOL;
+
+namespace PURE_SERVER
 {
-	pthread_t thread_id;
-	pthread_mutex_t thread_lock;
-	int thread_status;
-	int work_state;
-};
-typedef std::deque<struct thread_unit> thread_deque;
+	namespace THREAD_POOL
+	{
+		struct basic
+		{
+			pthread_t thread_id;
+			pthread_mutex_t thread_lock;
+			int thread_status;
+			int work_state;
+		};
+		typedef std::deque<struct basic> read_pool;
+		typedef std::deque<struct basic> dispose_pool;
 
-/*thread task allocation*/
-typedef std::queue<gid_t> thread_free;
-typedef std::queue<gid_t> thread_busy;
+		typedef std::queue<gid_t> free_queue;
+		typedef std::queue<gid_t> busy_queue;
 
-/*initialization*/
-int thread_pool_init(thread_deque& pool,size_t size);
+		int read()
+		{
 
+		}
+
+		int dispose()
+		{
+
+		}
+
+		int launch()
+		{
+			int iReturn = TASK_POOL::init();
+		}
+	}
+}
 
 /*_THREAD_POOL_HPP_*/
 #endif
