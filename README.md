@@ -7,7 +7,7 @@ author：PeiWenZeng<br />
 2013-12-31 线程池基本写完<br />
 <br />
 ==========计划表==========<br />
-2013-1-4 deadline，完成任务队列、线程池
+2013-1-4 deadline，完成任务队列、线程池<br />
 2013-1-18 deadline，完成 socket 部分
 <br />
 
