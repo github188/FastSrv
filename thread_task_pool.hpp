@@ -6,12 +6,13 @@
 
 namespace PURE_SERVER
 {
-	namespace THREAD_TASK_POOL
+	namespace TASK_POOL
 	{
 		pthread_mutex_t task_pool_mutex;
 
 		std::list<void*>* task_pool;
 
+		/*初始化任务队列*/
 		int init()
 		{
 			if((task_pool = new std::list<void*>) == NULL)
@@ -27,6 +28,7 @@ namespace PURE_SERVER
 			return 0;
 		}
 
+		/*销毁任务队列*/
 		void destroy()
 		{
 			delete task_pool;
@@ -34,8 +36,8 @@ namespace PURE_SERVER
 			pthread_mutex_destroy(&task_pool_mutex);
 		}
 
-		template<typename T>
-		int push(T task)
+		/*存放任务到任务队列*/
+		int push(void* task)
 		{
 			pthread_mutex_lock(&task_pool_mutex);
 			task_pool->push_back(task);
@@ -44,11 +46,11 @@ namespace PURE_SERVER
 			return 0;
 		}
 
-		template<typename T>
-		T pop()
+		/*从任务队列取出任务*/
+		void* pop()
 		{
 			pthread_mutex_lock(&task_pool_mutex);
-			T task = NULL;
+			void* task = NULL;
 			task = task_pool->front();
 			task_pool->pop_front();
 			pthread_mutex_unlock(&task_pool_mutex);

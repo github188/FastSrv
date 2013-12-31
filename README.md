@@ -3,14 +3,12 @@
 Program explain: server software,speedy and can adapt different business(message)<br />
 author：PeiWenZeng<br />
 ==========目前的进度==========<br />
-目前的想法是先做一个实现了select及epoll的初始版本，整个程序的架构尚未搭建。<br />
+2013-12-31 任务队列搭建完<br />
+2013-12-31 线程池基本写完<br />
+<br />
 ==========计划表==========<br />
-2013年11月，完成xml的支持工作，实现配置读取；<br />
-2013年12月，完成select的支持，线程池的支持；<br />
-2014年1月，完成epoll的支持；<br />
-2014年2月，完成server层的整个支持；<br />
-2014年3月，规划报文解析层的支持，完成json等常用格式的解析；<br />
-2014年4月，...todo<br />
+2013-1-4 deadline，完成任务队列、线程池
+2013-1-18 deadline，完成 socket 部分
 <br />
 
 
