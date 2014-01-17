@@ -9,6 +9,7 @@ SET(HOME /home/zengpw/work/pure_server)
 SET(SRC_LIST
 ${HOME}/thread_task_pool.hpp
 ${HOME}/thread_pool.hpp
+${HOME}/thread_pool_control.hpp
 ${HOME}/cmake/test.cpp
 )
 
