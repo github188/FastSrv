@@ -7,11 +7,6 @@ mail：zengpw@foxmail.com; vincent.tseng.cn@foxmail.com<br />
 
 <br />
 依赖的第三方软件：<br />
-	Ⅰ. 编译采用 cmake <br />
-
-<br />
-编译说明：<br />
-	cd cmake <br />
-	cmake . <br />
-	gmake <br />
+Ⅰ. 编译采用 cmake <br />
+Ⅱ. 由于采用了epoll这个系统调用，所以要求linux内核版本高于2.6.19 <br />
 
