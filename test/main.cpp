@@ -1,12 +1,8 @@
-#include "../thread_pool.hpp"
-
-typedef struct
-{
-	int socket;
-	int msg;
-} msgbox;
+#include "../ps_thread_pool.hpp"
+#include "../ps_socket.hpp"
 
 int main()
 {
-	int iReturn = PURE_SERVER::THREAD_POOL::launch();
+	;
 }
+
