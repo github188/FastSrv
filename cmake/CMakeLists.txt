@@ -7,10 +7,10 @@ PROJECT(PURE_SERVER)
 #set environment variable
 SET(HOME /home/zengpw/work/pure_server)
 SET(SRC_LIST
-${HOME}/thread_task_pool.hpp
-${HOME}/thread_pool.hpp
-${HOME}/thread_pool_control.hpp
-${HOME}/cmake/test.cpp
+${HOME}/ps_task.hpp
+${HOME}/ps_thread.hpp
+${HOME}/ps_thread_pool.hpp
+${HOME}/test/main.cpp
 )
 
 #execute path
