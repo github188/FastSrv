@@ -3,11 +3,9 @@
 
 int main()
 {
-	if(socket_create("127.0.0.1",42890) != 0)
-	{
-		printf("\n==============127.0.0.1 error !");
-	}
+	int fd = 0;
 
+	fd = socket_open("127.0.0.1",42890);
+	printf("\n==============fd: %d",fd);
 	printf("\n");
-	sleep(100);
 }

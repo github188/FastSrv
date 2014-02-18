@@ -1,10 +1,9 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
-#include <stdint.h>
 #include <netdb.h>
 #include <sys/socket.h>
 
-int socket_create(const char* host,unsigned short port)
+int socket_open(const char* host,unsigned short port)
 {
 	/* 转换IP */
 	in_addr_t ipv4;
@@ -29,16 +28,16 @@ int socket_create(const char* host,unsigned short port)
 	}
 
 	/* 生成socket描述符 */
-	int fd;
+	int theSocket;
 	int on = 1;
 
-	fd = socket(AF_INET,SOCK_STREAM,0);
-	if(fd == -1)
+	theSocket = socket(AF_INET,SOCK_STREAM,0);
+	if(theSocket == -1)
 	{
 		printf("\n==============socket() fail");
 		return -1;
 	}
-	setsockopt(fd,SOL_SOCKET,SO_REUSEPORT,&on,sizeof(on));
+	setsockopt(theSocket,SOL_SOCKET,SO_REUSEPORT,&on,sizeof(on));
 
 	/* IP、端口和socket描述符绑定 */
 	struct sockaddr_in addr;
@@ -47,19 +46,19 @@ int socket_create(const char* host,unsigned short port)
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = ipv4;
 	addr.sin_port = htons(port);
-	if(bind(fd,(struct sockaddr*)&addr,sizeof(struct sockaddr)) != 0)
+	if(bind(theSocket,(struct sockaddr*)&addr,sizeof(struct sockaddr)) != 0)
 	{
 		printf("\n==============bind() fail");
 		return -1;
 	}
 
 	/* 监听 */
-	if(listen(fd,128) != 0)
+	if(listen(theSocket,128) != 0)
 	{
 		printf("\n==============bind() fail");
 		return -1;
 	}
 
-	return 0;
+	return theSocket;
 }
 
