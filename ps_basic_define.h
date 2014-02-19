@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <errno.h>
 #include <sys/time.h>
+#include <unistd.h>
 
 // __PS_BASIC_DEFINE_H__
 #endif

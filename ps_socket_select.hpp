@@ -1,6 +1,6 @@
 #include <sys/select.h>
 
-int wait_use_select(int theSocket)
+int wait_use_select(int theSocket,void*(*event)())
 {
 	int flag;
 	fd_set fd;
@@ -9,7 +9,7 @@ int wait_use_select(int theSocket)
 	while(true)
 	{
 		flag = 0;
-		FD_ZERO(fd);
+		FD_ZERO(&fd);
 		FD_SET(theSocket,&fd);
 		tv.tv_sec = 1;
 		tv.tv_usec = 0;
@@ -19,6 +19,17 @@ int wait_use_select(int theSocket)
 		{
 			continue;
 		}
+
+		int clientSocket;
+		clientSocket = socket_accept(theSocket);
+
+		if(clientSocket != -1)
+		{
+			usleep(5000);
+			continue;
+		}
 	}
+
+	return 0;
 }
 

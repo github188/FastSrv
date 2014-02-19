@@ -62,3 +62,13 @@ int socket_open(const char* host,unsigned short port)
 	return theSocket;
 }
 
+int socket_accept(int serverSocket)
+{
+	unsigned int addrlen;
+	struct sockaddr clientAddr;
+
+	addrlen = sizeof(struct sockaddr);
+
+	return accept(serverSocket,&clientAddr,&addrlen);
+}
+
