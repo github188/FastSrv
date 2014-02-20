@@ -1,35 +1,43 @@
 #include <sys/select.h>
 
-int wait_use_select(int theSocket,void*(*event)())
+int wait_use_select(int socketfd,int(*event)(int))
 {
-	int flag;
 	fd_set fd;
 	struct timeval tv;
 
+	/* 等待连接次数 */
+	int count = 0;
+
 	while(true)
 	{
-		flag = 0;
+		printf("\n==============wait_use_select() : this is the %dth call select()",++count);
+
 		FD_ZERO(&fd);
-		FD_SET(theSocket,&fd);
+		FD_SET(socketfd,&fd);
 		tv.tv_sec = 1;
 		tv.tv_usec = 0;
 
-		flag = select(theSocket+1,&fd,NULL,NULL,&tv);
-		if(flag <= 0)
+		if(select(socketfd+1,&fd,NULL,NULL,&tv) <= 0)
 		{
 			continue;
 		}
 
-		int clientSocket;
-		clientSocket = socket_accept(theSocket);
-
-		if(clientSocket != -1)
+		int cSocketfd;
+		if(socket_accept(socketfd,cSocketfd) != -1)
 		{
-			usleep(5000);
+			if(event(cSocketfd) == 0)
+			{
+				continue;
+			}
+			else
+			{
+				return -1;
+			}
+
+			usleep(1*1000*1000);
 			continue;
 		}
 	}
 
 	return 0;
 }
-

@@ -1,9 +1,5 @@
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <sys/socket.h>
 
-int socket_open(const char* host,unsigned short port)
+int socket_create(const char* host,const unsigned short port,struct sockaddr_in& addr,int& socketfd)
 {
 	/* 转换IP */
 	in_addr_t ipv4;
@@ -28,47 +24,107 @@ int socket_open(const char* host,unsigned short port)
 	}
 
 	/* 生成socket描述符 */
-	int theSocket;
 	int on = 1;
 
-	theSocket = socket(AF_INET,SOCK_STREAM,0);
-	if(theSocket == -1)
+	socketfd = socket(AF_INET,SOCK_STREAM,0);
+	if(socketfd == -1)
 	{
-		printf("\n==============socket() fail");
 		return -1;
 	}
-	setsockopt(theSocket,SOL_SOCKET,SO_REUSEPORT,&on,sizeof(on));
+	setsockopt(socketfd,SOL_SOCKET,SO_REUSEPORT,&on,sizeof(on));
 
-	/* IP、端口和socket描述符绑定 */
-	struct sockaddr_in addr;
+	/* 生成地址 */
 	memset(&addr,0,sizeof(struct sockaddr_in));
-
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = ipv4;
 	addr.sin_port = htons(port);
-	if(bind(theSocket,(struct sockaddr*)&addr,sizeof(struct sockaddr)) != 0)
+
+	return 0;
+}
+
+int socket_open(const char* host,const unsigned short port,int& socketfd)
+{
+	struct sockaddr_in addr;
+	memset(&addr,0,sizeof(struct sockaddr_in));
+
+	if(socket_create(host,port,addr,socketfd) == -1)
+	{
+		printf("\n==============socket_create() fail");
+		return -1;
+	}
+
+	/* IP、端口和socket描述符绑定 */
+	if(bind(socketfd,(struct sockaddr*)&addr,sizeof(struct sockaddr)) != 0)
 	{
 		printf("\n==============bind() fail");
 		return -1;
 	}
 
 	/* 监听 */
-	if(listen(theSocket,128) != 0)
+	if(listen(socketfd,128) != 0)
 	{
-		printf("\n==============bind() fail");
+		printf("\n==============listen() fail");
 		return -1;
 	}
 
-	return theSocket;
+	return 0;
 }
 
-int socket_accept(int serverSocket)
+int socket_accept(const int sSocketfd,int& cSocketfd)
 {
 	unsigned int addrlen;
-	struct sockaddr clientAddr;
+	struct sockaddr addr;
 
 	addrlen = sizeof(struct sockaddr);
+	cSocketfd = accept(sSocketfd,&addr,&addrlen);
 
-	return accept(serverSocket,&clientAddr,&addrlen);
+	if(cSocketfd == -1)
+	{
+		return -1;
+	}
+
+	return 0;
+}
+
+int socket_connect(const char* host,const unsigned short port,int& socketfd,int retry,const int sleep)
+{
+	struct sockaddr_in addr;
+	memset(&addr,0,sizeof(struct sockaddr_in));
+
+	if(socket_create(host,port,addr,socketfd) == -1)
+	{
+		printf("\n==============socket_create() fail");
+		return -1;
+	}
+
+	while(true)
+	{
+		if(connect(socketfd,(struct sockaddr*)&addr,sizeof(struct sockaddr)) == 0)
+		{
+			return 0;
+		}
+		else
+		{
+			if(retry > 0)
+			{
+				printf("\n==============connect() fail , retry after %d second, remain retry count is : %d",sleep,--retry);
+				usleep(sleep*1000*1000);
+			}
+			else
+			{
+				return -1;
+			}
+		}
+	}
+
+	return 0;
+}
+
+int socket_close(int& socketfd)
+{
+	close(socketfd);
+	socketfd = 0;
+
+	return 0;
 }
 
