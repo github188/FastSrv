@@ -1,8 +1,3 @@
-#ifndef _THREAD_TASK_POOL_HPP_
-#define _THREAD_TASK_POOL_HPP_
-
-#include <list>
-#include <pthread.h>
 
 pthread_mutex_t task_pool_mutex;
 
@@ -54,5 +49,4 @@ void* pop()
 	return task;
 }
 
-/*_THREAD_TASK_POOL_HPP_*/
-#endif
+

@@ -14,6 +14,9 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <sys/socket.h>
+/* thread pool */
+#include <pthread.h>
+#include <list>
 
 // __PS_DEFINE_H__
 #endif
