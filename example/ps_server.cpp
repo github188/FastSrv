@@ -25,8 +25,6 @@ int main()
 			continue;
 		}
 
-		printf("\n==============service socket is : %d\n",socketfd);
-
 		wait_use_select(socketfd,event);
 		socket_close(socketfd);
 	}
@@ -38,19 +36,16 @@ int event(int cSocketfd)
 {
 	printf("\n==============client connect! client socket is : %d",cSocketfd);
 
-	printf("\n==============I will authenticate the client.");	
 	if(event_login(cSocketfd) != 0)
 	{
 		return -1;
 	}
 
-	printf("\n==============Begin the deal.");	
 	if(event_deal(cSocketfd) != 0)
 	{
 		return -1;
 	}
 
-	printf("\n==============Client logout.");	
 	if(event_logout(cSocketfd) != 0)
 	{
 		return -1;
@@ -61,18 +56,33 @@ int event(int cSocketfd)
 
 int event_login(int cSocketfd)
 {
-	//to do...
+	st_head sth;
+	socket_recv_normal(cSocketfd,(char*)&sth,sizeof(st_head));
+
+	printf("\n==============receive sth.auth : %s",sth.auth);
+	printf("\n==============receive sth.version : %s",sth.version);
+
+	if(strncmp(sth.auth,"zengpw",10) || strncmp(sth.version,"0.1",10))
+	{
+		printf("\n==============identity verify error!");
+		return -1;
+	}
+
+	printf("\n==============client is login");
+
 	return 0;
 }
 
 int event_deal(int cSocketfd)
 {
+	printf("\n==============Begin the deal.");
 	//to do...
 	return 0;
 }
 
 int event_logout(int cSocketfd)
 {
+	printf("\n==============Client logout.");
 	//to do...
 	return 0;
 }

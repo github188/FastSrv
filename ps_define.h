@@ -1,9 +1,11 @@
 #ifndef __PS_DEFINE_H__
 #define __PS_DEFINE_H__
 
+/* c */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+/* linux */
 #include <stdint.h>
 #include <errno.h>
 #include <unistd.h>
