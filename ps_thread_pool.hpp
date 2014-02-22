@@ -1,81 +1,60 @@
 
-/*函数返回值*/
-enum function
-{
-	FUN_OK = 0,
-	FUN_EXCEPTION = 1
-};
-
-/*工作状态*/
-enum work
-{
-	WAITING = 0,
-	WORKING = 1
-};
-
-/*线程池basic结构*/
 typedef struct pool
 {
-	pthread_t t_id;
-	pthread_mutex_t t_lock;
-	void* (*fun)(void* task);
-	int is_work;
+	pthread_t tid;
+	pthread_mutex_t tlock;
 } pool;
-typedef std::list<pool> thread_pool;
+std::list<pool*>* thread_pool;
 
-/*线程池*/
-thread_pool* w_pool;
-thread_pool* r_pool;
-
-/*增加线程*/
-int add_thread_to_pool(int type,size_t size,void* (*fun)())
+int thread_pool_init()
 {
-	for(int i = 0 ; i < size ; ++i)
+	if((thread_pool = new std::list<pool*>) == NULL)
+	{
+		return -1;
+	}
+
+	thread_pool->clear();
+	return 0;
+}
+
+void thread_pool_destroy()
+{
+	delete thread_pool;
+}
+
+int thread_pool_add(unsigned int size,void*(*event)(void*))
+{
+	for(unsigned int i = 0 ; i < size ; ++i)
 	{
 		pool *p = new pool;
 
-		p->is_work = WAITING;
-		p->fun = fun;
-
-		if(pthread_mutex_init(&p->t_lock,NULL) != 0)
+		if(pthread_mutex_init(&p->tlock,NULL) != 0)
 		{
 			delete p;
-			std::cout << "pthread_mutex_init fail!" << std::endl;
-			continue;
+			printf("\n==============thread_mutex_init fail!");
+			return -1;
 		}
 
 		pthread_t tid;
-		int iRe;
-
-		if(type == 1)
+		if(pthread_create(&tid,NULL,event,NULL) == 0)
 		{
-			iRe = pthread_create(&tid,NULL,add_producer_to_pool,(void*)p);
-			++w_pool_control->working;
-			++w_pool_control->current_num;
-		}
-		else if(type == 2)
-		{
-			iRe = pthread_create(&tid,NULL,add_consumer_to_pool,(void*)p);
-			++r_pool_control->working;
-			++r_pool_control->current_num;
-		}
-
-		if(iRe == 0)
-		{
-			std::cout << "pthread_create success!" << std::endl;
+			thread_pool->push_back(p);
+			printf("\n==============pthread_create success!");
 		}
 		else
 		{
 			delete p;
-			std::cout << "pthread_create fail!" << std::endl;
-			continue;
+			printf("\n==============pthread_create fail!");
+			return -1;
 		}
 
-		pthead_detach(tid);
+		pthread_detach(tid);
+		usleep(1*1000*1000);
 	}
 
-	return FUN_OK;
+	return 0;
 }
+
 
 /*
 //
@@ -85,8 +64,6 @@ int add_thread_to_pool(int type,size_t size,void* (*fun)())
 //
 //
 */
-
-
 // /*减少线程*/
 // int del_thread_from_pool(thread_pool* the_pool,size_t size)
 // {

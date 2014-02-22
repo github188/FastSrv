@@ -1,6 +1,6 @@
 #include <sys/select.h>
 
-int wait_use_select(int socketfd,int(*event)(int))
+void wait_use_select(int socketfd,int(*event)(int))
 {
 	fd_set fd;
 	struct timeval tv;
@@ -10,7 +10,7 @@ int wait_use_select(int socketfd,int(*event)(int))
 
 	while(true)
 	{
-		printf("\n==============wait_use_select() : this is the %dth call select()",++count);
+		printf("\nread ==============this is the %dth call select()",++count);
 
 		FD_ZERO(&fd);
 		FD_SET(socketfd,&fd);
@@ -31,7 +31,7 @@ int wait_use_select(int socketfd,int(*event)(int))
 			}
 			else
 			{
-				return -1;
+				return;
 			}
 
 			usleep(1*1000*1000);
@@ -39,5 +39,26 @@ int wait_use_select(int socketfd,int(*event)(int))
 		}
 	}
 
-	return 0;
+	return;
 }
+
+void server_open(int(*event)(int))
+{
+	while(true)
+	{
+		int socketfd;
+
+		if(socket_open("127.0.0.1",42890,socketfd) != 0)
+		{
+			printf("\n==============socket_listen error!");
+			continue;
+		}
+
+		wait_use_select(socketfd,event);
+		socket_close(socketfd);
+	}
+
+	return;
+}
+
+

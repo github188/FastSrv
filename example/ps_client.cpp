@@ -8,6 +8,9 @@
 #include "../ps_api.h"
 #include "ps_message.h"
 
+int event_request(int socketfd);
+int event_login(int socketfd);
+
 int main()
 {
 	int socketfd;
@@ -19,13 +22,10 @@ int main()
 		return 0;
 	}
 
-	st_head sth;
-
-	memset(&sth,'\0',sizeof(st_head));
-	memcpy(sth.auth,"zengpw",9);
-	memcpy(sth.version,"0.2",9);
-
-	socket_send_normal(socketfd,(char*)&sth,sizeof(st_head));
+	if(event_login(socketfd) == 0)
+	{
+		event_request(socketfd);
+	}
 
 	socket_close(socketfd);
 
@@ -34,3 +34,41 @@ int main()
 	return 0;
 }
 
+int event_login(int socketfd)
+{
+	st_head sth;
+
+	memset(&sth,'\0',sizeof(st_head));
+	memcpy(sth.auth,"zengpw",9);
+	memcpy(sth.version,"0.1",9);
+	memcpy(sth.response,"0",4);
+
+	socket_send_normal(socketfd,(char*)&sth,sizeof(st_head));
+	socket_recv_normal(socketfd,(char*)&sth,sizeof(st_head));
+
+	if(strncmp(sth.response,"1",5))
+	{
+		printf("\n==============identity verify error!");
+		return -1;
+	}
+
+	printf("\n==============server is ready!");
+	return 0;
+}
+
+int event_request(int socketfd)
+{
+	st_body sth;
+
+	memset(&sth,'\0',sizeof(st_body));
+	memcpy(sth.question,"AABBCCDD",99);
+
+	printf("\n==============send the question after 5 seconds !");
+	usleep(5*1000*1000);
+	socket_send_normal(socketfd,(char*)&sth,sizeof(st_body));
+	socket_recv_normal(socketfd,(char*)&sth,sizeof(st_body));
+
+	printf("\n==============Server is reponse ! \n==============\"%s\"",sth.answer);
+
+	return 0;
+}
