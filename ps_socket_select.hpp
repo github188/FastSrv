@@ -50,7 +50,7 @@ void server_open(int(*event)(int))
 
 		if(socket_open("127.0.0.1",42890,socketfd) != 0)
 		{
-			printf("\n==============socket_listen error!");
+			printf("\nread ==============socket_listen error!");
 			continue;
 		}
 

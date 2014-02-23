@@ -63,8 +63,8 @@ int event_request(int socketfd)
 	memset(&sth,'\0',sizeof(st_body));
 	memcpy(sth.question,"AABBCCDD",99);
 
-	printf("\n==============send the question after 5 seconds !");
-	usleep(5*1000*1000);
+	printf("\n==============send the question after 3 seconds !");
+	usleep(3*1000*1000);
 	socket_send_normal(socketfd,(char*)&sth,sizeof(st_body));
 	socket_recv_normal(socketfd,(char*)&sth,sizeof(st_body));
 

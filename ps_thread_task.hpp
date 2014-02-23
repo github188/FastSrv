@@ -22,6 +22,14 @@ int task_init()
 
 void task_destroy()
 {
+	while(!task_pool->empty())
+	{
+		void* task = task_pool->front();
+		task_pool->pop_front();
+		/* 有待改进 */
+		free(task);
+	}
+
 	delete task_pool;
 
 	pthread_mutex_destroy(&task_mutex);
@@ -53,5 +61,4 @@ int task_pop(void** task)
 
 	return 0;
 }
-
 

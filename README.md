@@ -1,7 +1,8 @@
 pure_server<br />
 程序说明：用C++实现的 server 库，目的是10万并发^_^，运行在 linux 平台，会自带一个示例程序<br />
-程序版本：2014年2月23日 17:16:00
-程序状态：开发中，不可用。
+程序版本：第一版
+最后修改：2014年2月24日 00:05:32<br />
+程序状态：可用。<br />
 
 author：zengpw<br />
 mail：zengpw@foxmail.com; vincent.tseng.cn@gmail.com<br />

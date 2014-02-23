@@ -70,7 +70,7 @@ int event_accept_t(int socketfd)
 
 	if(task_push((void*)st_task_t) == 0)
 	{
-		printf("\nread ==============push question : %s",st_body_t->question);
+		printf("\nread ==============push question : %s",st_task_t->st_body_t->question);
 	}
 	else
 	{
@@ -85,10 +85,10 @@ void* event_response(void* arg)
 {
 	while(true)
 	{
-		st_task** task_t = NULL;
-		if(task_pop((void**)task_t) == 0)
+		void* task_t = NULL;
+		if(task_pop(&task_t) == 0)
 		{
-			st_task* task = **task_t;
+			st_task* task = (st_task*)task_t;
 			printf("\ndeal ==============pop question : %s",task->st_body_t->question);
 
 			char ch[256] = {'\0'};
@@ -99,8 +99,8 @@ void* event_response(void* arg)
 			free(task);
 		}
 
-		printf("\ndeal ==============pop after 5 seconds");
-		usleep(5*1000*1000);
+		printf("\ndeal ==============pop after 3 seconds");
+		usleep(3*1000*1000);
 	}
 
 	return NULL;
