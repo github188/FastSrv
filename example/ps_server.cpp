@@ -14,10 +14,20 @@ void* event_accept(void* arg);
 
 int main()
 {
-	task_init();
-	thread_pool_init();
-	thread_pool_add(1,event_accept);
-	thread_pool_add(1,event_response);
+	if(task_init() == 0)
+	{
+		if(thread_pool_init() == 0)
+		{
+			thread_pool_add(1,event_accept);
+			thread_pool_add(1,event_response);
+		}
+	}
+
+	while(true)
+	{
+		;
+	}
+
 	printf("\n");
 	return 0;
 }
@@ -61,7 +71,6 @@ int event_accept_t(int socketfd)
 	if(task_push((void*)st_task_t) == 0)
 	{
 		printf("\nread ==============push question : %s",st_body_t->question);
-		printf("\nread ==============I'll push the request to pool");
 	}
 	else
 	{
@@ -76,19 +85,18 @@ void* event_response(void* arg)
 {
 	while(true)
 	{
-		printf("\ndeal ==============I'll pop the request from pool");
-
-		void* task = NULL;
-		if(!task_pop(task))
+		st_task** task_t = NULL;
+		if(task_pop((void**)task_t) == 0)
 		{
-			st_task* st_task_t = (st_task*)task;
-			printf("\ndeal ==============pop question : %s",st_task_t->st_body_t->question);
+			st_task* task = **task_t;
+			printf("\ndeal ==============pop question : %s",task->st_body_t->question);
 
 			char ch[256] = {'\0'};
-			memcpy(ch,st_task_t->st_body_t->question,99);
-			memcpy(st_task_t->st_body_t->answer,"I'm the server,I recevie your quesion is : ",99);
-			strcat(st_task_t->st_body_t->answer,ch);
-			socket_send_normal(st_task_t->socketfd,(char*)st_task_t->st_body_t,sizeof(st_body));
+			memcpy(ch,task->st_body_t->question,99);
+			memcpy(task->st_body_t->answer,"I'm the server,I recevie your question is : ",99);
+			strcat(task->st_body_t->answer,ch);
+			socket_send_normal(task->socketfd,(char*)task->st_body_t,sizeof(st_body));
+			free(task);
 		}
 
 		printf("\ndeal ==============pop after 5 seconds");

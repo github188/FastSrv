@@ -38,6 +38,7 @@ int thread_pool_add(unsigned int size,void*(*event)(void*))
 		pthread_t tid;
 		if(pthread_create(&tid,NULL,event,NULL) == 0)
 		{
+			pthread_detach(tid);
 			thread_pool->push_back(p);
 			printf("\n==============pthread_create success!");
 		}
@@ -48,7 +49,6 @@ int thread_pool_add(unsigned int size,void*(*event)(void*))
 			return -1;
 		}
 
-		pthread_detach(tid);
 		usleep(1*1000*1000);
 	}
 

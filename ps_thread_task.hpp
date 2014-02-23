@@ -2,6 +2,8 @@
 pthread_mutex_t task_mutex;
 std::list<void*>* task_pool;
 
+void task_destroy();
+
 int task_init()
 {
 	if((task_pool = new std::list<void*>) == NULL)
@@ -11,6 +13,7 @@ int task_init()
 
 	if(pthread_mutex_init(&task_mutex,NULL))
 	{
+		task_destroy();
 		return -1;
 	}
 
@@ -33,16 +36,17 @@ int task_push(void* task)
 	return 0;
 }
 
-int task_pop(void* task)
+int task_pop(void** task)
 {
 	pthread_mutex_lock(&task_mutex);
 	if(!task_pool->empty())
 	{
-		task = task_pool->front();
+		*task = task_pool->front();
 		task_pool->pop_front();
 	}
 	else
 	{
+		pthread_mutex_unlock(&task_mutex);
 		return -1;
 	}
 	pthread_mutex_unlock(&task_mutex);
