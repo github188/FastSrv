@@ -1,18 +1,9 @@
 pure_server<br />
 程序说明：用C++实现的 server 库，目的是10万并发^_^，运行在 linux 平台，会自带一个示例程序<br />
 程序版本： 1.1<br />
-最后修改：2014年3月26日<br />
-程序状态：修改中，可用。目前只能保证每一次commit以后可用，不撰写使用方法。<br />
-
+最后修改：2014年3月27日 19:22:39<br />
 author：zengpw<br />
 mail：zengpw@foxmail.com;    zengpw1226@gmail.com<br />
-
-使用方法：<br />
-编译： <br />
-		Ⅰ.	build.sh ，会生成cmake中间文件和makefile到build目录<br />
-		Ⅱ. build.sh m ，会调用gmake，编译build目录下的makefile<br />
-		Ⅲ. build.sh mi ，安装头文件到 ./include 、 安装库文件到 ./lib<br />
-清理： build.sh clean<br />
 
 已经实现的功能：<br />
 Ⅰ.基于TCP IPV4协议的socket通信；<br />
