@@ -1,4 +1,6 @@
 
+#include "ps_socket_api.h"
+
 int socket_send_normal(int socketfd,const char* buf,size_t nbytes)
 {
 	int sent = 0;

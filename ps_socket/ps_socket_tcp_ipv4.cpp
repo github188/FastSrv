@@ -1,4 +1,6 @@
 
+#include "ps_socket_api.h"
+
 int socket_create(const char* host,const unsigned short port,struct sockaddr_in& addr,int& socketfd)
 {
 	/* 转换IP */

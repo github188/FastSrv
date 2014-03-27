@@ -1,4 +1,6 @@
 
+#include "ps_thread_api.h"
+
 pthread_mutex_t task_mutex;
 std::list<void*>* task_pool;
 

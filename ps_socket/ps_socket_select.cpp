@@ -1,4 +1,5 @@
-#include <sys/select.h>
+
+#include "ps_socket_api.h"
 
 void wait_use_select(int socketfd,int(*event)(int))
 {

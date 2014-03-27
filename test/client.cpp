@@ -5,8 +5,8 @@
 **
 */
 
-#include "../ps_api.h"
-#include "ps_message.h"
+#include "ps_socket_api.h"
+#include "message.h"
 
 int event_request(int socketfd);
 int event_login(int socketfd);

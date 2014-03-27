@@ -5,8 +5,8 @@
 **
 */
 
-#include "../ps_api.h"
-#include "ps_message.h"
+#include "ps_socket_api.h"
+#include "message.h"
 
 void* event_response(void* arg);
 int event_accept_t(int socketfd);

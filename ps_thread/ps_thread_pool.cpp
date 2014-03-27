@@ -1,4 +1,6 @@
 
+#include "ps_thread_api.h"
+
 typedef struct pool
 {
 	pthread_t tid;
