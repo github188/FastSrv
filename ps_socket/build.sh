@@ -6,16 +6,16 @@ if [ -z `echo $1` ]; then
 	cmake ../
 fi
 
-if [ $1 = "g1" ]; then
+if [ $1 = "clean" ]; then
 	rm -rf build
 fi
 
-if [ $1 = "g2" ]; then
+if [ $1 = "gmake" ]; then
 	cd build
 	gmake
 fi
 
-if [ $1 = "g3" ]; then
+if [ $1 = "gmake2" ]; then
 	cd build
 	gmake install
 fi

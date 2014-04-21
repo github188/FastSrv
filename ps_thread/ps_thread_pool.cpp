@@ -33,7 +33,7 @@ int thread_pool_add(unsigned int size,void*(*event)(void*))
 		if(pthread_mutex_init(&p->tlock,NULL) != 0)
 		{
 			delete p;
-			printf("\nthread ==============thread_mutex_init fail!");
+			printf("\n[ps_thread] thread_mutex_init fail!");
 			return -1;
 		}
 
@@ -42,12 +42,12 @@ int thread_pool_add(unsigned int size,void*(*event)(void*))
 		{
 			pthread_detach(tid);
 			thread_pool->push_back(p);
-			printf("\nthread ==============pthread_create success!");
+			printf("\n[ps_thread] pthread_create success!");
 		}
 		else
 		{
 			delete p;
-			printf("\nthread ==============pthread_create fail!");
+			printf("\n[ps_thread] pthread_create fail!");
 			return -1;
 		}
 
