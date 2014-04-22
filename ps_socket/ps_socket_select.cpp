@@ -36,7 +36,6 @@ int socket_wait_by_select(int socketfd,int(*event)(int))
 				return -1;
 			}
 
-			usleep(1*1000*1000);
 			continue;
 		}
 	}

@@ -13,6 +13,7 @@ SET(CLIENT								${PROJECT_SOURCE_DIR}/as3_message.h ${PROJECT_SOURCE_DIR}/as3_
 
 #link library
 LINK_LIBRARIES(
+ps_task
 ps_thread
 ps_socket
 ps_protocol

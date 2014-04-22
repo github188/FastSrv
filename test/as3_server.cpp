@@ -5,15 +5,13 @@
 **
 */
 
-#include "ps_log.h"
+#include "ps_task_api.h"
 #include "ps_socket_api.h"
 #include "ps_protocol_as3_api.h"
-
 #include "as3_message.h"
 
 void* event_response(void* arg);
 int event_accept_t(int socketfd);
-int event_accept_843(int socketfd);
 void* event_accept(void* arg);
 void* event_843(void* arg);
 
@@ -51,22 +49,28 @@ void* event_accept(void* arg)
 
 int event_accept_t(int socketfd)
 {
-	char recvBuf[512] = {'\0'};
-
-	protocol_as3_recv(socketfd,recvBuf);
-
-	st_task* stTask = (st_task*)malloc(sizeof(st_task));
-	stTask->socketfd = socketfd;
-	strncpy(stTask->szBuf,recvBuf,512);
-
-	if(task_push((void*)stTask) == 0)
+	while(true)
 	{
-		printf("\n[test] push task : %s",stTask->szBuf);
-	}
-	else
-	{
-		printf("\n[test] push the request to pool error!");
-		return -1;
+		char recvBuf[512] = {'\0'};
+
+		if(protocol_as3_recv(socketfd,recvBuf) <= 0)
+		{
+			break;
+		}
+
+		st_task* stTask = (st_task*)malloc(sizeof(st_task));
+		stTask->socketfd = socketfd;
+		strncpy(stTask->szBuf,recvBuf,512);
+
+		if(task_push((void*)stTask) == 0)
+		{
+			printf("\n[test] push task : %s\n",stTask->szBuf);
+		}
+		else
+		{
+			printf("\n[test] push the request to pool error!\n");
+			return -1;
+		}		
 	}
 
 	return 0;
@@ -84,7 +88,7 @@ void* event_response(void* arg)
 			printf("\n[test] pop task : %s\n",stTask->szBuf);
 
 			char sendBuf[512] = {'\0'};
-			strncpy(sendBuf,"abcdefg",512);
+			strncpy(sendBuf,"I get your message!",512);
 			protocol_as3_send(stTask->socketfd,sendBuf,strlen(sendBuf));
 			free(stTask);
 		}

@@ -9,7 +9,7 @@ void socket_server_open(int(*event)(int),const char* host,const unsigned short p
 
 		if(socket_open(host,port,socketfd) != 0)
 		{
-			printf("\n[ps_socket] socket_listen error!");
+			printf("\n[ps_socket] socket_listen error!\n");
 			usleep(1*1000*1000);
 			continue;
 		}

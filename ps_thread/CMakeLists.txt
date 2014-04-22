@@ -1,6 +1,6 @@
 #instruction
 #author:				zengpw
-#last modify time:		2014年3月27日 17:01:59
+#last modify time:		2014年4月22日 16:44:13
 
 #base cmake
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
@@ -14,6 +14,7 @@ MESSAGE(STATUS ${CMAKE_DEBUG}"the source is : "${SOURCE})
 #link library
 LINK_LIBRARIES(
 pthread
+ps_task
 )
 
 #output path

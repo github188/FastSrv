@@ -1,7 +1,7 @@
 pure_server<br />
 程序说明：用C++实现的 server 库，目的是10万并发^_^，作用是网游后台，运行在 linux 平台<br />
-程序版本： 1.2<br />
-最后修改：2014年4月21日 17:49:37<br />
+程序版本： 1.3<br />
+最后修改：2014年4月22日 16:51:21<br />
 author：zengpw<br />
 mail：zengpw@foxmail.com;    zengpw1226@gmail.com<br />
 
