@@ -28,7 +28,7 @@ ${PS_LIB}
 
 #compile option
 SET(CMAKE_BUILE_TYPE DEBUG)
-SET(CMAKE_CXX_FLAGS "-Wall -D_REENTARNT -O2 -g -std=gnu++0x")
+SET(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -Wconversion -Wshadow -D_REENTARNT -O2 -g -std=gnu++0x")
 
 MESSAGE(STATUS ${CMAKE_DEBUG}" base.cmake loading finish! ")
 
