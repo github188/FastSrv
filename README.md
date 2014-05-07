@@ -1,9 +1,12 @@
 pure_server<br />
 程序说明：用C++实现的 server 库，目的是10万并发^_^，作用是网游后台，运行在 linux 平台<br />
 程序版本： 1.3<br />
-最后修改：2014年4月22日 16:51:21<br />
 author：zengpw<br />
 mail：zengpw@foxmail.com;    zengpw1226@gmail.com<br />
+
+last update:
+2014年5月7日 21:17:55<br />
+计划添加内存数据库，预留ps_memory_db文件夹<br />
 
 已经实现的功能：<br />
 Ⅰ.基于TCP IPV4协议的socket通信；<br />
