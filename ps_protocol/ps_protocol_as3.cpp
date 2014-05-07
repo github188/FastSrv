@@ -9,7 +9,7 @@ int protocol_as3_recv(int socketfd,char* buf)
 	while(true)
 	{
 		received = 0;
-		received = recv(socketfd,buf + offset,1,0);
+		received = (int)recv(socketfd,buf + offset,1,0);
 		if(received <= 0)
 		{
 			return -1;

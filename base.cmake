@@ -8,7 +8,7 @@ SET(CMAKE_DEBUG "                 ====ZENGPW CMAKE DEBUG INFO====               
 
 #project set
 PROJECT(PURE_SERVER)
-SET(PS_HOME                     /home/zengpw/work/pure_server)
+SET(PS_HOME                     /home/zengpw/work/server/pure_server)
 SET(PS_PUBLIC					${PS_HOME}/ps_public)
 SET(PS_LIB						${PS_HOME}/lib)
 SET(PS_BIN						${PS_HOME}/bin)

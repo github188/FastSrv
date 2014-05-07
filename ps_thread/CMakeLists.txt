@@ -14,7 +14,7 @@ MESSAGE(STATUS ${CMAKE_DEBUG}"the source is : "${SOURCE})
 #link library
 LINK_LIBRARIES(
 pthread
-ps_task
+ps_thread_queue
 )
 
 #output path

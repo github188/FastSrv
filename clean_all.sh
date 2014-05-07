@@ -1,7 +1,7 @@
 rm -rf bin lib
 cd ps_public
 rm -rf *_api.h
-cd ../ps_task
+cd ../ps_thread_queue
 rm -rf build
 cd ../ps_thread
 rm -rf build
