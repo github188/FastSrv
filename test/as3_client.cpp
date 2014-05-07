@@ -5,7 +5,7 @@
 **
 */
 
-#include "ps_task_api.h"
+#include "ps_thread_queue_api.h"
 #include "ps_socket_api.h"
 #include "ps_protocol_as3_api.h"
 #include "as3_message.h"
