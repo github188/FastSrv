@@ -7,8 +7,7 @@ pure_server<br />
 author：zengpw<br />
 mail：zengpw@foxmail.com;    zengpw1226@gmail.com<br />
 
-last update:
-2014年7月8日 00:03:03<br />
+last update:  2014年7月8日 00:03:0<br />
 
 ==============================     编译说明    ========================<br />
 
