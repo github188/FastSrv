@@ -4,10 +4,10 @@ pure_server<br />
 程序说明：c++服务端框架，和基于此框架的游戏后台项目。支持 Linux/Windows <br />
 程序版本： <br />
 1.4 dev version <br />
+last update:  2014年7月8日 00:03:0<br />
 author：zengpw<br />
 mail：zengpw@foxmail.com;    zengpw1226@gmail.com<br />
 
-last update:  2014年7月8日 00:03:0<br />
 
 ==============================     编译说明    ========================<br />
 
