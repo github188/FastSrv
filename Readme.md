@@ -1,22 +1,29 @@
 pure_server & dragon
 =================================
+
 程序说明
 ---------------------------------
-    brief :<br />
+###brief :<br />
 c++服务端框架 ps_framework ，和基于此框架的游戏后台 dragon <br />
-支持环境： windows/Linux <br />
-    程序版本： <br />
-1.4 dev version <br />
-    last update: <br />
-2014年9月2日 22:06:56 <br />
-    author： <br />
-zengpw<br />
-    mail：<br />
-zengpw1226@gmail.com;zengpw@foxmail.com;<br />
 
+###支持环境：<br />
+windows/Linux <br />
+
+###程序版本： <br />
+1.4 dev version <br />
+
+###last update: <br />
+2014年9月2日 22:06:56 <br />
+
+###author： <br />
+zengpw<br />
+
+###mail：<br />
+zengpw1226@gmail.com;zengpw@foxmail.com;<br />
 
 编译说明
 ---------------------------------
+
 其他
 ---------------------------------
 进度的规划：<br />
