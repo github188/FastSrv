@@ -1,0 +1,66 @@
+﻿
+PureServer C++ 代码风格指南
+
+Author: zengpw
+Contact: zengpw1226@gmail.com;zengpw@foxmail.com
+
+一、文件命名
+
+1、文件名全部用小写，单词之间用“_”连接；
+
+2、源文件命名
+
+//公开头文件： 以“namespace + classname”命名，例如 ps_fw_channel.h
+//私有头文件， 以“classname_”命名，例如：
+
+    基类：     classname.h ，            例如 channel.h
+    实现类：   classname_imp ，          例如 channel_imp.h
+    抽象工厂： classname_factory ,       例如 channel_imp_factory.h
+    子类：     classname_sub ，          例如 channel_imp_win.h
+
+//实现文件，   和头文件名字相同
+
+
+
+二、文件注释、注释
+
+
+
+三、类
+
+1、如果实现方法写在头文件里，那么 {} 后面建议不加符号 ";"
+
+//example
+
+    ThreadPool(){}
+
+2、
+
+
+
+
+
+
+
+=============================================================================================
+
+English Version: Be come soon.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
