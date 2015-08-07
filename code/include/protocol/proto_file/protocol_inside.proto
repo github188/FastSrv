@@ -1,5 +1,0 @@
-
-message HeartBeat
-{
-	required int32 sessionNum = 1;
-}
