@@ -19,4 +19,4 @@ libevent 2.0.22-stable <br/>
     libevent_pthreads.so -> libevent_pthreads-2.0.so.5.1.9
     libevent.so -> libevent-2.0.so.5.1.9
 
-当前仅作为备份使用， linux.make 及各 Makefile 路径未修改，不能直接使用
+当前仅作为备份使用
