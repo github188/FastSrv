@@ -1,0 +1,6 @@
+
+message HeartBeat
+{
+	required int32 port = 1;
+	required int32 load = 2;
+}
