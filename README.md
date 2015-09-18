@@ -1,5 +1,9 @@
 # libvi
 This is a c++ library for socket / http server.
+<blockquote>
+程序仅作为备份及学习使用
+目前版本在 CentOS 6.6 系统上测试通过
+</blockquote>
 
 depend on:
 
@@ -19,5 +23,3 @@ Google Protocol Buffers 2.6.1 release <br/>
 <blockquote>
 内部协议使用 Google Protocol Buffers
 </blockquote>
-
-当前仅作为备份使用
