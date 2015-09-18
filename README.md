@@ -8,7 +8,16 @@ libevent 2.0.22-stable <br/>
 网络底层使用 libevent
 </blockquote>
 redis 2.8.22 <br/>
+<blockquote>
+数据持久化使用 redis
+</blockquote>
 python 3.3.3 <br/>
+<blockquote>
+http 部分使用 python
+</blockquote>
 Google Protocol Buffers 2.6.1 release <br/>
+<blockquote>
+内部协议使用 Google Protocol Buffers
+</blockquote>
 
 当前仅作为备份使用
