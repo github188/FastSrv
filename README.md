@@ -2,10 +2,10 @@
 It is a c++ server which use in net program.
 <blockquote>
 支持 TLV 协议 <br/>
-目前版本在 CentOS 6.6 系统上测试通过 <br/>
+在 CentOS 6.6 系统上测试通过@2015-09-25 <br/>
 </blockquote>
 
-Depend on:
+Depend on
 <blockquote>
 网络底层使用 libevent 2.0.22-stable <br/>
 数据持久化使用 redis 2.8.22 <br/>
