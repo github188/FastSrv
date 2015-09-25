@@ -1,5 +1,5 @@
 # libvi
-It is a c++ server which use in net program.
+This is a c++ server that is used to network.
 <blockquote>
 支持 TLV 协议 <br/>
 支持报文缓存（基于 redis ） <br/>
