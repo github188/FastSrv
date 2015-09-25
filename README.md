@@ -2,8 +2,8 @@
 It is a c++ server which use in net program.
 <blockquote>
 支持 TLV 协议 <br/>
-支持报文缓存 <br/>
-支持负载均衡 <br/>
+支持报文缓存（基于 redis ） <br/>
+支持负载均衡（基于心跳协议） <br/>
 在 CentOS 6.6 系统上测试通过@2015-09-25 <br/>
 </blockquote>
 
