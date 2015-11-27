@@ -22,7 +22,7 @@ sending: 和 java 联调，用于下发指令 <br/>
 
 Compile
 <blockquote>
-common: **make cmi**<br/>
+common: `make cmi`<br/>
 protocol: make cm<br/>
 session: make cm<br/>
 </blockquote>
